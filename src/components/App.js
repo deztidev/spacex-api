@@ -1,10 +1,16 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import "../assets/styles/App.scss";
+import Header from "./Header.jsx";
 
-function App() {
-  return <BrowserRouter></BrowserRouter>;
-}
+import "../assets/styles/index.scss";
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Header />
+    </BrowserRouter>
+  );
+};
 
 export default App;

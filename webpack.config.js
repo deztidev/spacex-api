@@ -6,10 +6,14 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/assets/",
     filename: "bundle.js",
   },
   resolve: {
     extensions: [".js", ".jsx"],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
   },
   module: {
     rules: [
@@ -34,6 +38,15 @@ module.exports = {
           { loader: MiniCssExtractPlugin.loader },
           "css-loader",
           "sass-loader",
+        ],
+      },
+      {
+        test: /\.(jpg|png)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: { name: "assets/[hash].[ext]" },
+          },
         ],
       },
     ],
