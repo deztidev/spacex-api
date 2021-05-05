@@ -1,28 +1,29 @@
 .header {
-  font-family: $regular-font, Arial, Verdana, sans-serif;
   font-weight: bold;
   text-align: center;
   background-color: none;
+  &__navbar {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  &__link-logo {
+    margin-left: 15px;
+  }
   &__logo {
-    position: relative;
     width: 150px;
-    left: 15px;
-    bottom: 18px;
   }
   &__ul {
     width: 100%;
-    position: absolute;
-    top: 70px;
   }
   &__items {
     display: inline-block;
-    padding: 10px;
+    padding: 0 8px;
     a {
       color: $white-color;
       font-size: 1.2rem;
       line-height: 1.5rem;
       text-decoration: none;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.3px;
       &::after {
         content: "";
         display: block;
@@ -40,20 +41,24 @@
 }
 @media only screen and (min-width: 650px) {
   .header {
-    font-family: $expanded-font, Arial, Verdana, sans-serif;
+    font-family: $expanded-font;
     text-align: unset;
+    &__link-logo {
+      position: relative;
+      left: 50px;
+      margin: 0;
+    }
     &__logo {
       width: 200px;
-      height: 100px;
-      padding-left: 5px;
     }
     &__ul {
-      top: 20px;
+      position: absolute;
       width: auto;
-      height: auto;
-      margin-left: 38%;
+      top: 51px;
+      left: 40%;
     }
     &__items {
+      padding: 0 10px;
       & a {
         font-size: 1.3rem;
         line-height: 2rem;

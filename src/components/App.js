@@ -1,14 +1,25 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Header from "./Header.jsx";
+import Layout from "./Layout.jsx";
 
 import "../assets/styles/index.scss";
 
 const App = () => {
   return (
+    // <BrowserRouter>
+    //   <Layout>
+    //     <Switch>
+    //       <Route exact path="/" component={Home} />
+    //       <Route exact path="/previous-launches" component={PreviousLaunches} />
+    //       <Route exact path="/rockets" component={Rockets} />
+    //       <Route exact path="/next-launches" component={NextLaunches} />
+    //       <Route component={NotFound} />
+    //     </Switch>
+    //   </Layout>
+    // </BrowserRouter>
     <BrowserRouter>
-      <Header />
+      <Layout></Layout>
     </BrowserRouter>
   );
 };
