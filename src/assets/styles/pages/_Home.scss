@@ -1,0 +1,88 @@
+.cards-container {
+  min-height: 81vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__titles {
+    color: $secondary-color;
+    font-family: $regular-font;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.4;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .cards-container {
+    flex-direction: unset;
+    width: 76%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    &__titles {
+      font-size: 1.5rem;
+      line-height: 1.7rem;
+      letter-spacing: 0.5;
+      position: absolute;
+      width: calc(100% - 250px);
+      &--titles1 {
+        top: 10vh;
+        left: 0;
+      }
+      &--titles2 {
+        top: 10vh;
+        right: 0;
+      }
+      &--titles3 {
+        left: 0;
+        margin-bottom: 10px;
+      }
+      &--titles4 {
+        right: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .container {
+    margin: 30px 10px;
+  }
+}
+
+@media only screen and (min-width: 920px) {
+  .cards-container {
+    margin-top: 30px;
+    &__titles {
+      font-size: 1.8rem;
+      width: calc(100% - 300px);
+      margin: 30px 0;
+      &--titles1 {
+        top: calc(10vh + 10px);
+      }
+      &--titles2 {
+        top: calc(10vh + 10px);
+      }
+    }
+  }
+  .container {
+    margin: 50px 10px;
+  }
+}
+
+@media only screen and (min-width: 1180px) {
+  .cards-container__titles {
+    width: calc(100% - 420px);
+    font-family: $expanded-font;
+    font-size: 1.8rem;
+  }
+  .container {
+    margin: 60px 10px;
+  }
+}
+
+@media only screen and (min-width: 1650px) {
+  .cards-container {
+    width: 66%;
+  }
+}

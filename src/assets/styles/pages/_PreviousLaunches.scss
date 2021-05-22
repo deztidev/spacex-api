@@ -1,0 +1,4 @@
+.contained-image {
+  @extend .container__image;
+  object-fit: contain;
+}

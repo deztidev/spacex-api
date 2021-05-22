@@ -7,12 +7,19 @@
     margin: 0 auto;
   }
   &__link-logo {
-    margin-left: 15px;
+    display: block;
+    position: relative;
+    left: calc(50% - 60px);
+    width: 150px;
+    height: 30px;
   }
   &__logo {
+    position: relative;
+    bottom: 30px;
     width: 150px;
   }
   &__ul {
+    margin: 20px 0;
     width: 100%;
   }
   &__items {
@@ -25,13 +32,14 @@
       text-decoration: none;
       letter-spacing: 0.3px;
       &::after {
+        background-color: $white-color;
         content: "";
         display: block;
         width: 0;
         height: 2px;
-        background-color: $white-color;
         transition: width 0.3s;
       }
+      &:focus::after,
       &:hover::after {
         width: 100%;
         transition: width 0.3s;
@@ -39,21 +47,27 @@
     }
   }
 }
+
 @media only screen and (min-width: 650px) {
   .header {
     font-family: $expanded-font;
     text-align: unset;
     &__link-logo {
+      display: inline-block;
       position: relative;
+      top: 50px;
       left: 50px;
-      margin: 0;
+      width: 200px;
+      height: 35px;
     }
     &__logo {
+      bottom: 50px;
       width: 200px;
     }
     &__ul {
       position: absolute;
       width: auto;
+      margin: 0 auto;
       top: 51px;
       left: 40%;
     }
