@@ -1,5 +1,23 @@
-// .container-error {
-// }
+.error-container {
+  color: $white-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 79vh;
+  &__title {
+    font-family: $expanded-font;
+    font-size: 15rem;
+  }
+  &__message {
+    font-family: $regular-font;
+    font-size: 2.3rem;
+    margin-bottom: 100px;
+    text-align: center;
+    letter-spacing: 3.5px;
+    line-height: 2.8rem;
+  }
+}
 
 @-moz-keyframes move-astronaut {
   100% {
@@ -45,4 +63,10 @@
   right: 20%;
   will-change: transform;
   animation: move-astronaut 50s infinite linear both alternate;
+}
+
+@media only screen and (min-width: 920px) {
+  .error-container {
+    height: 82vh;
+  }
 }

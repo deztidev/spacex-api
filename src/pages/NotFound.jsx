@@ -1,13 +1,11 @@
 import React from "react";
 
-import "../assets/styles/pages/_NotFound.scss";
-
 const NotFound = () => {
   return (
-    <div className="404-container">
-      <h1 className="404-container__title">404</h1>
-      <span className="404-container__message">
-        Looks like you lost in space
+    <div className="error-container">
+      <h1 className="error-container__title">404</h1>
+      <span className="error-container__message">
+        LOOKS LIKE YOU ARE <br /> <strong>LOST IN SPACE</strong>
       </span>
       <div className="box_astronaut">
         <img

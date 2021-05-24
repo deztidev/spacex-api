@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Card from "../components/Card.jsx";
 
-import starlinkBg from "../assets/images/starlink-bg.png";
-import background from "../assets/images/background-big.png";
-
 class PreviousLaunches extends Component {
   state = {
     previous: [
