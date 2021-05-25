@@ -22,13 +22,19 @@ class PreviousLaunches extends Component {
     return (
       <div className="cards-container">
         {this.state.previous.map((previous, i) => (
-          <Card
-            key={i}
-            image={previous.links.patch.small}
-            title={previous.name}
-            details={previous.details}
-            class="contained-image"
-          />
+          <Card key={i}>
+            <img
+              className={`container__image`}
+              style={{ objectFit: "contain" }}
+              src={previous.links.patch.small}
+              alt={`${previous.name} image`}
+            />
+            <div className="container__info">
+              <h2 className="container__title">{previous.name}</h2>
+              <p className="container__paragraph">{previous.details}</p>
+              <button className="container__button">View More</button>
+            </div>
+          </Card>
         ))}
       </div>
     );

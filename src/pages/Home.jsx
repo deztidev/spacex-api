@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import Card from "../components/Card.jsx";
+import Modal from "../components/Modal.jsx";
 
 class Home extends Component {
   state = {
@@ -16,6 +18,9 @@ class Home extends Component {
     rockets: [],
     latestRocket: [{ flickr_images: [] }],
     nextRocket: [{ flickr_images: [] }],
+    latestLaunchIsOpen: false,
+    latestRocketIsOpen: false,
+    nextRocketIsOpen: false,
   };
 
   async componentDidMount() {
@@ -50,26 +55,85 @@ class Home extends Component {
     this.setState({ nextRocket: nextRocket });
   }
 
+  handleLatestLaunch = () => {
+    this.setState(state => ({
+      latestLaunchIsOpen: !state.latestLaunchIsOpen,
+    }));
+  };
+
+  handleLatestRocket = () => {
+    this.setState(state => ({
+      latestRocketIsOpen: !state.latestRocketIsOpen,
+    }));
+  };
+
+  handleNextRocket = () => {
+    this.setState(state => ({
+      nextRocketIsOpen: !state.nextRocketIsOpen,
+    }));
+  };
+
   render() {
     return (
       <div className="cards-container">
         <h1 className="cards-container__titles cards-container__titles--titles1">
           Latest Launch
         </h1>
-        <Card
-          image={this.state.latest.links.patch.small}
-          title={this.state.latest.name}
-          details={this.state.latest.details}
-          class={"contained-image"}
-        />
+        <Card>
+          <img
+            className={`container__image`}
+            style={{ objectFit: "contain" }}
+            src={this.state.latest.links.patch.small}
+            alt={`${this.state.latest.name} image`}
+          />
+          <div className="container__info">
+            <h2 className="container__title">{this.state.latest.name}</h2>
+            <p className="container__paragraph">{this.state.latest.details}</p>
+            <button
+              className="container__button"
+              onClick={this.handleLatestLaunch}
+            >
+              View More
+            </button>
+          </div>
+        </Card>
+        {this.state.latestLaunchIsOpen ? (
+          <Modal handleClick={this.handleLatestLaunch}>
+            <h2>{this.state.latest.name}</h2>
+            <img
+              className={"modal__image"}
+              src={this.state.latest.links.patch.small}
+              alt={`${this.state.latest.name} image`}
+            />
+            <p>{this.state.latest.details}</p>
+          </Modal>
+        ) : null}
         <h1 className="cards-container__titles cards-container__titles--titles2">
           Next Launch
         </h1>
-        <Card
-          image={this.state.next.links.patch.small}
-          title={this.state.next.name}
-          details={
-            <>
+        <Card>
+          <img
+            className={`container__image`}
+            style={
+              this.state.next.links.patch.small
+                ? { objectFit: "contain" }
+                : {
+                    position: "relative",
+                    left: "2%",
+                    filter: "brightness(0)",
+                  }
+            }
+            src={this.state.next.links.patch.small}
+            alt={`${this.state.next.name} image`}
+          />
+          <div style={{ display: "initial" }} className="container__info">
+            <h2
+              style={{ marginTop: 20, marginBottom: 20 }}
+              className="container__title"
+            >
+              {this.state.next.name}
+            </h2>
+            <p className="container__paragraph">
               Date UTC: {this.state.next.date_utc} <br />
               Date precision: {this.state.next.date_precision} <br />
               Flight Number: {this.state.next.flight_number} <br />
@@ -81,26 +145,75 @@ class Home extends Component {
                   </a>
                 </>
               )}
-            </>
-          }
-          class={"contained-image"}
-        />
+            </p>
+          </div>
+        </Card>
         <h1 className="cards-container__titles cards-container__titles--titles3">
           Latest Rocket Launched
         </h1>
-        <Card
-          image={this.state.latestRocket.flickr_images}
-          title={this.state.latestRocket.name}
-          details={this.state.latestRocket.description}
-        />
+        <Card>
+          <img
+            className={`container__image`}
+            src={this.state.latestRocket.flickr_images}
+            alt={`${this.state.latestRocket.name} image`}
+          />
+          <div className="container__info">
+            <h2 className="container__title">{this.state.latestRocket.name}</h2>
+            <p className="container__paragraph">
+              {this.state.latestRocket.description}
+            </p>
+            <button
+              className="container__button"
+              onClick={this.handleLatestRocket}
+            >
+              View More
+            </button>
+          </div>
+        </Card>
+        {this.state.latestRocketIsOpen ? (
+          <Modal handleClick={this.handleLatestRocket}>
+            <h2>{this.state.latest.name}</h2>
+            <img
+              className={"modal__image"}
+              src={this.state.latest.links.patch.small}
+              alt={`${this.state.latest.name} image`}
+            />
+            <p>{this.state.latest.details}</p>
+          </Modal>
+        ) : null}
         <h1 className="cards-container__titles cards-container__titles--titles4">
           Next Rocket to be launched
         </h1>
-        <Card
-          image={this.state.nextRocket.flickr_images}
-          title={this.state.nextRocket.name}
-          details={this.state.nextRocket.description}
-        />
+        <Card>
+          <img
+            className={`container__image`}
+            src={this.state.nextRocket.flickr_images}
+            alt={`${this.state.nextRocket.name} image`}
+          />
+          <div className="container__info">
+            <h2 className="container__title">{this.state.nextRocket.name}</h2>
+            <p className="container__paragraph">
+              {this.state.nextRocket.description}
+            </p>
+            <button
+              className="container__button"
+              onClick={this.handleNextRocket}
+            >
+              View More
+            </button>
+          </div>
+        </Card>
+        {this.state.nextRocketIsOpen ? (
+          <Modal handleClick={this.handleNextRocket}>
+            <h2>{this.state.latest.name}</h2>
+            <img
+              className={"modal__image"}
+              src={this.state.latest.links.patch.small}
+              alt={`${this.state.latest.name} image`}
+            />
+            <p>{this.state.latest.details}</p>
+          </Modal>
+        ) : null}
       </div>
     );
   }

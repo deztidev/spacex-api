@@ -26,14 +26,31 @@ class NextLaunches extends Component {
     return (
       <div className="cards-container">
         {this.state.upcoming.map((upcoming, i) => (
-          <Card
-            key={i}
-            image={
-              upcoming.links.patch.small ? upcoming.links.patch.small : logo
-            }
-            title={upcoming.name}
-            details={
-              <>
+          <Card key={i}>
+            <img
+              className={"container__image"}
+              style={
+                upcoming.links.patch.small
+                  ? { objectFit: "contain" }
+                  : {
+                      position: "relative",
+                      left: "2%",
+                      filter: "brightness(0)",
+                    }
+              }
+              src={
+                upcoming.links.patch.small ? upcoming.links.patch.small : logo
+              }
+              alt={`${upcoming.name} image`}
+            />
+            <div style={{ display: "initial" }} className="container__info">
+              <h2
+                style={{ marginTop: 20, marginBottom: 20 }}
+                className="container__title"
+              >
+                {upcoming.name}
+              </h2>
+              <p className="container__paragraph">
                 Date UTC: {upcoming.date_utc} <br />
                 Date precision: {upcoming.date_precision} <br />
                 Flight Number: {upcoming.flight_number} <br />
@@ -45,12 +62,9 @@ class NextLaunches extends Component {
                     </a>
                   </>
                 )}
-              </>
-            }
-            class={
-              upcoming.links.patch.small ? "contained-image" : "logo-image"
-            }
-          />
+              </p>
+            </div>
+          </Card>
         ))}
       </div>
     );

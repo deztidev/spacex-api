@@ -3,7 +3,7 @@ import React from "react";
 const Card = props => {
   return (
     <div className="container">
-      <img
+      {/* <img
         className={`container__image ${props.class}`}
         src={props.image}
         alt=""
@@ -12,7 +12,8 @@ const Card = props => {
         <h2 className="container__title">{props.title}</h2>
         <p className="container__paragraph">{props.details}</p>
         <button className="container__button">View More</button>
-      </div>
+      </div> */}
+      {props.children}
     </div>
   );
 };

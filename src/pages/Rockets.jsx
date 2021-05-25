@@ -21,12 +21,18 @@ class Rockets extends Component {
     return (
       <div className="cards-container">
         {this.state.rockets.map((rocket, i) => (
-          <Card
-            key={i}
-            title={rocket.name}
-            details={rocket.description}
-            image={rocket.flickr_images}
-          />
+          <Card key={i}>
+            <img
+              className={`container__image`}
+              src={rocket.flickr_images}
+              alt={`${rocket.name} image`}
+            />
+            <div className="container__info">
+              <h2 className="container__title">{rocket.name}</h2>
+              <p className="container__paragraph">{rocket.description}</p>
+              <button className="container__button">View More</button>
+            </div>
+          </Card>
         ))}
       </div>
     );
