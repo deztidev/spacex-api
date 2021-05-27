@@ -4,3 +4,18 @@ $expanded-font: "DDINExpRegular", Arial, Verdana, sans-serif;
 $white-color: #ffffff;
 $secondary-color: ivory;
 $tertiary-color: #016eff;
+
+@mixin button {
+  color: $secondary-color;
+  background-color: $tertiary-color;
+  font-family: $regular-font;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 300;
+  border: none;
+  border-radius: 2px;
+  padding: 4px 5px;
+  &:hover {
+    background-color: #3c7ae4;
+  }
+}

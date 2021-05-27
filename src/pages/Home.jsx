@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Card from "../components/Card.jsx";
 import Modal from "../components/Modal.jsx";
 
+import logo from "../assets/images/SpaceX-Logo.png";
+
 class Home extends Component {
   state = {
     latest: {
@@ -45,13 +47,11 @@ class Home extends Component {
     const latestRocket = this.state.rockets.find(
       rocket => rocket.id == this.state.latest.rocket
     );
-
     this.setState({ latestRocket: latestRocket });
 
     const nextRocket = this.state.rockets.find(
       rocket => rocket.id == this.state.next.rocket
     );
-
     this.setState({ nextRocket: nextRocket });
   }
 
@@ -101,11 +101,43 @@ class Home extends Component {
           <Modal handleClick={this.handleLatestLaunch}>
             <h2>{this.state.latest.name}</h2>
             <img
-              className={"modal__image"}
+              className="modal__image"
+              style={{ objectFit: "contain" }}
               src={this.state.latest.links.patch.small}
               alt={`${this.state.latest.name} image`}
             />
-            <p>{this.state.latest.details}</p>
+            <div className="info-container">
+              <span className="info-container__items">
+                <h3>Date</h3>
+                {this.state.latest.date_utc.slice(0, 10)}
+              </span>
+              <span className="info-container__items">
+                <h3>Success</h3>{" "}
+                {this.state.latest.success ? (
+                  <span role="image" aria-label="true icon">
+                    ✅
+                  </span>
+                ) : (
+                  <span role="image" aria-label="false icon">
+                    ❌
+                  </span>
+                )}
+              </span>
+              <span className="info-container__items">
+                <h3>Flight Number</h3>
+                {this.state.latest.flight_number}
+              </span>
+              <span className="info-container__items">
+                <h3>Rocket</h3>
+                {this.state.latestRocket.name}
+              </span>
+            </div>
+            <p className="modal__paragraph">{this.state.latest.details}</p>
+            <a href={this.state.latest.links.webcast} target="_blank">
+              <button className="modal__link-button">
+                Watch it on youtube
+              </button>
+            </a>
           </Modal>
         ) : null}
         <h1 className="cards-container__titles cards-container__titles--titles2">
@@ -123,7 +155,11 @@ class Home extends Component {
                     filter: "brightness(0)",
                   }
             }
-            src={this.state.next.links.patch.small}
+            src={
+              this.state.next.links.patch.small
+                ? this.state.next.links.patch.small
+                : logo
+            }
             alt={`${this.state.next.name} image`}
           />
           <div style={{ display: "initial" }} className="container__info">
@@ -135,7 +171,7 @@ class Home extends Component {
             </h2>
             <p className="container__paragraph">
               Date UTC: {this.state.next.date_utc} <br />
-              Date precision: {this.state.next.date_precision} <br />
+              Date Precision: {this.state.next.date_precision} <br />
               Flight Number: {this.state.next.flight_number} <br />
               {this.state.next.links.wikipedia && (
                 <>
@@ -172,13 +208,47 @@ class Home extends Component {
         </Card>
         {this.state.latestRocketIsOpen ? (
           <Modal handleClick={this.handleLatestRocket}>
-            <h2>{this.state.latest.name}</h2>
+            <h2>{this.state.latestRocket.name}</h2>
             <img
               className={"modal__image"}
-              src={this.state.latest.links.patch.small}
-              alt={`${this.state.latest.name} image`}
+              src={this.state.latestRocket.flickr_images}
+              alt={`${this.state.latestRocket.name} image`}
             />
-            <p>{this.state.latest.details}</p>
+            <div className="info-container">
+              <span className="info-container__items">
+                <h3>Height</h3>
+                {this.state.latestRocket.height.meters} meters
+              </span>
+              <span className="info-container__items">
+                <h3>Diameter</h3>
+                {this.state.latestRocket.diameter.meters} meters
+              </span>
+              <span className="info-container__items">
+                <h3>Mass</h3>
+                {this.state.latestRocket.mass.kg} kg
+              </span>
+              <span className="info-container__items">
+                <h3>First Flight</h3>
+                {this.state.latestRocket.first_flight}
+              </span>
+              <span className="info-container__items">
+                <h3>Active</h3>{" "}
+                {this.state.latestRocket.active ? (
+                  <span role="image" aria-label="true icon">
+                    ✅
+                  </span>
+                ) : (
+                  <span role="image" aria-label="false icon">
+                    ❌
+                  </span>
+                )}
+              </span>
+              <span className="info-container__items">
+                <h3>Cost per Launch</h3>$
+                {this.state.latestRocket.cost_per_launch / 1000000} millions
+              </span>
+            </div>
+            <p>{this.state.latestRocket.description}</p>
           </Modal>
         ) : null}
         <h1 className="cards-container__titles cards-container__titles--titles4">

@@ -10,6 +10,7 @@ class NextLaunches extends Component {
         links: {
           patch: {},
         },
+        date_utc: "",
       },
     ],
   };
@@ -51,7 +52,7 @@ class NextLaunches extends Component {
                 {upcoming.name}
               </h2>
               <p className="container__paragraph">
-                Date UTC: {upcoming.date_utc} <br />
+                Date UTC: {upcoming.date_utc.slice(0, 19)} <br />
                 Date precision: {upcoming.date_precision} <br />
                 Flight Number: {upcoming.flight_number} <br />
                 {upcoming.links.wikipedia && (
