@@ -20,9 +20,9 @@
     width: 300px;
   }
   &__image {
-    width: 280px;
+    width: 100%;
     height: 170px;
-    margin: 5px 0;
+    margin: 8px 0;
   }
   &__close-button {
     position: absolute;
@@ -34,10 +34,10 @@
   }
   .info-container {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     &__items {
       margin: 5px 0;
-      width: 50%;
+      width: 30%;
       text-align: center;
       & h3 {
         margin-bottom: 2px;
@@ -45,7 +45,7 @@
     }
   }
   &__paragraph {
-    margin: 8px 0;
+    margin: 10px 0;
   }
   &__link-button {
     @include button;
@@ -66,15 +66,17 @@
       padding: 1.5rem;
     }
     &__image {
-      width: calc(40vw - 40px);
       height: 250px;
-      margin: 5px 0;
+      margin: 10px 0;
     }
     .info-container__items {
       margin: 8px 0;
       & h3 {
         margin-bottom: 6px;
       }
+    }
+    &__paragraph {
+      margin: 12px 0;
     }
     &__link-button {
       font-size: 1.5rem;
@@ -83,7 +85,7 @@
   }
 }
 
-@media only screen and (min-width: 1180px) {
+@media only screen and (min-width: 1450px) {
   .modal {
     &__container {
       font-size: 1.7rem;
@@ -92,17 +94,21 @@
       padding: 2rem;
     }
     &__image {
-      height: 300px;
+      height: 350px;
+      margin: 15px 0;
     }
-    .info-container__items {
-      margin: 10px 0;
-      & h3 {
-        margin-bottom: 8px;
+    .info-container {
+      margin-bottom: 15px;
+      &__items {
+        margin: 12px 0;
+        & h3 {
+          margin-bottom: 10px;
+        }
       }
     }
     &__link-button {
       font-size: 1.7rem;
-      margin-top: 8px;
+      margin-top: 18px;
     }
   }
 }

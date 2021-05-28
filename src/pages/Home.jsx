@@ -53,6 +53,8 @@ class Home extends Component {
       rocket => rocket.id == this.state.next.rocket
     );
     this.setState({ nextRocket: nextRocket });
+
+    console.log(this.state.latest.rocket);
   }
 
   handleLatestLaunch = () => {
@@ -214,7 +216,7 @@ class Home extends Component {
               src={this.state.latestRocket.flickr_images}
               alt={`${this.state.latestRocket.name} image`}
             />
-            <div className="info-container">
+            <div className="info-container" style={{ flexWrap: "wrap" }}>
               <span className="info-container__items">
                 <h3>Height</h3>
                 {this.state.latestRocket.height.meters} meters
@@ -248,7 +250,12 @@ class Home extends Component {
                 {this.state.latestRocket.cost_per_launch / 1000000} millions
               </span>
             </div>
-            <p>{this.state.latestRocket.description}</p>
+            <p className="modal__paragraph">
+              {this.state.latestRocket.description}
+            </p>
+            <button className="modal__link-button">
+              Learn More on Wikipedia
+            </button>
           </Modal>
         ) : null}
         <h1 className="cards-container__titles cards-container__titles--titles4">
@@ -275,13 +282,52 @@ class Home extends Component {
         </Card>
         {this.state.nextRocketIsOpen ? (
           <Modal handleClick={this.handleNextRocket}>
-            <h2>{this.state.latest.name}</h2>
+            <h2>{this.state.nextRocket.name}</h2>
             <img
               className={"modal__image"}
-              src={this.state.latest.links.patch.small}
-              alt={`${this.state.latest.name} image`}
+              src={this.state.nextRocket.flickr_images}
+              alt={`${this.state.nextRocket.name} image`}
             />
-            <p>{this.state.latest.details}</p>
+            <div className="info-container" style={{ flexWrap: "wrap" }}>
+              <span className="info-container__items">
+                <h3>Height</h3>
+                {this.state.nextRocket.height.meters} meters
+              </span>
+              <span className="info-container__items">
+                <h3>Diameter</h3>
+                {this.state.nextRocket.diameter.meters} meters
+              </span>
+              <span className="info-container__items">
+                <h3>Mass</h3>
+                {this.state.nextRocket.mass.kg} kg
+              </span>
+              <span className="info-container__items">
+                <h3>First Flight</h3>
+                {this.state.nextRocket.first_flight}
+              </span>
+              <span className="info-container__items">
+                <h3>Active</h3>{" "}
+                {this.state.nextRocket.active ? (
+                  <span role="image" aria-label="true icon">
+                    ✅
+                  </span>
+                ) : (
+                  <span role="image" aria-label="false icon">
+                    ❌
+                  </span>
+                )}
+              </span>
+              <span className="info-container__items">
+                <h3>Cost per Launch</h3>$
+                {this.state.nextRocket.cost_per_launch / 1000000} millions
+              </span>
+            </div>
+            <p className="modal__paragraph">
+              {this.state.nextRocket.description}
+            </p>
+            <button className="modal__link-button">
+              Learn More on Wikipedia
+            </button>
           </Modal>
         ) : null}
       </div>
