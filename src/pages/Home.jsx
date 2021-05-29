@@ -53,8 +53,6 @@ class Home extends Component {
       rocket => rocket.id == this.state.next.rocket
     );
     this.setState({ nextRocket: nextRocket });
-
-    console.log(this.state.latest.rocket);
   }
 
   handleLatestLaunch = () => {

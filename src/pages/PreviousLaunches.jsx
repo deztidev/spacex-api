@@ -14,7 +14,6 @@ class PreviousLaunches extends Component {
       },
     ],
     rockets: [],
-    previousRocket: [{ flickr_images: [] }],
     index: 0,
     previousLaunchIsOpen: false,
   };
@@ -29,15 +28,6 @@ class PreviousLaunches extends Component {
     );
     const rockets = await rocketsResponse.json();
     this.setState({ rockets: rockets });
-
-    const past = this.state.previous.map(past => past.rocket);
-
-    const previousRocket = this.state.rockets.find(
-      rocket => rocket.id == past[0]
-    );
-    this.setState({ previousRocket: previousRocket });
-
-    console.log(this.state.previousRocket);
   }
 
   handlePreviousLaunch = i => {
@@ -104,7 +94,14 @@ class PreviousLaunches extends Component {
               </span>
               <span className="info-container__items">
                 <h3>Rocket</h3>
-                {this.state.previousRocket}
+                {this.state.previous[this.state.index].rocket ==
+                  this.state.rockets[0].id && "Falcon 1"}
+                {this.state.previous[this.state.index].rocket ==
+                  this.state.rockets[1].id && "Falcon 9"}
+                {this.state.previous[this.state.index].rocket ==
+                  this.state.rockets[2].id && "Falcon Heavy"}
+                {this.state.previous[this.state.index].rocket ==
+                  this.state.rockets[3].id && "Starship"}
               </span>
             </div>
             <p className="modal__paragraph">
