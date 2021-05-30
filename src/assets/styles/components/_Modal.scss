@@ -19,6 +19,19 @@
     padding: 1rem;
     width: 300px;
   }
+  &__arrows {
+    color: $tertiary-color;
+    font-size: 3rem;
+    cursor: pointer;
+    position: absolute;
+    top: 23%;
+  }
+  #left-arrow {
+    left: 1px;
+  }
+  #right-arrow {
+    right: 1px;
+  }
   &__image {
     width: 100%;
     height: 170px;
@@ -69,6 +82,16 @@
       height: 250px;
       margin: 10px 0;
     }
+    &__arrows {
+      font-size: 3.5rem;
+      top: 18vh;
+    }
+    #left-arrow {
+      left: 3px;
+    }
+    #right-arrow {
+      right: 3px;
+    }
     .info-container__items {
       margin: 8px 0;
       & h3 {
@@ -96,6 +119,10 @@
     &__image {
       height: 350px;
       margin: 15px 0;
+    }
+    &__arrows {
+      font-size: 4.5rem;
+      top: 30%;
     }
     .info-container {
       margin-bottom: 15px;

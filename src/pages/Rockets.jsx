@@ -5,19 +5,16 @@ import Modal from "../components/Modal";
 
 class Rockets extends Component {
   state = {
-    rockets: [
-      {
-        height: {},
-      },
-    ],
+    rockets: [{ flickr_images: [] }],
     rocketIsOpen: false,
+    index: 0,
+    indexImage: 0,
   };
 
   async componentDidMount() {
     const response = await fetch("https://api.spacexdata.com/v4/rockets");
     const rockets = await response.json();
     this.setState({ rockets: rockets });
-    console.log(this.state.rockets.height);
   }
 
   handleRocket = i => {
@@ -25,6 +22,30 @@ class Rockets extends Component {
       rocketIsOpen: !state.rocketIsOpen,
       index: i,
     }));
+  };
+
+  handlePreviousImage = length => {
+    if (this.state.indexImage == 0) {
+      this.setState(state => ({
+        indexImage: (state.indexImage = length - 1),
+      }));
+    } else {
+      this.setState(state => ({
+        indexImage: state.indexImage - 1,
+      }));
+    }
+  };
+
+  handleNextImage = length => {
+    if (this.state.indexImage == length - 1) {
+      this.setState(() => ({
+        indexImage: 0,
+      }));
+    } else {
+      this.setState(state => ({
+        indexImage: state.indexImage + 1,
+      }));
+    }
   };
 
   render() {
@@ -53,32 +74,58 @@ class Rockets extends Component {
         </div>
         {this.state.rocketIsOpen ? (
           <Modal handleClick={this.handleRocket}>
-            <h2>{this.state.rockets.name}</h2>
+            <h2>{this.state.rockets[this.state.index].name}</h2>
+            <span
+              onClick={() =>
+                this.handlePreviousImage(
+                  this.state.rockets[this.state.index].flickr_images.length
+                )
+              }
+              className="modal__arrows"
+              id="left-arrow"
+            >
+              &#8249;
+            </span>
             <img
               className={"modal__image"}
-              src={this.state.rockets.flickr_images}
-              alt={`${this.state.rockets.name} image`}
+              src={
+                this.state.rockets[this.state.index].flickr_images[
+                  this.state.indexImage
+                ]
+              }
+              alt={`${this.state.rockets[this.state.index].name} image`}
             />
+            <span
+              onClick={() =>
+                this.handleNextImage(
+                  this.state.rockets[this.state.index].flickr_images.length
+                )
+              }
+              className="modal__arrows"
+              id="right-arrow"
+            >
+              &#8250;
+            </span>
             <div className="info-container" style={{ flexWrap: "wrap" }}>
               <span className="info-container__items">
                 <h3>Height</h3>
-                {this.state.rockets.height} meters
+                {this.state.rockets[this.state.index].height.meters} meters
               </span>
               <span className="info-container__items">
                 <h3>Diameter</h3>
-                {this.state.rockets.diameter} meters
+                {this.state.rockets[this.state.index].diameter.meters} meters
               </span>
               <span className="info-container__items">
                 <h3>Mass</h3>
-                {this.state.rockets.mass} kg
+                {this.state.rockets[this.state.index].mass.kg} kg
               </span>
               <span className="info-container__items">
                 <h3>First Flight</h3>
-                {this.state.rockets.first_flight}
+                {this.state.rockets[this.state.index].first_flight}
               </span>
               <span className="info-container__items">
                 <h3>Active</h3>{" "}
-                {this.state.rockets.active ? (
+                {this.state.rockets[this.state.index].active ? (
                   <span role="image" aria-label="true icon">
                     ✅
                   </span>
@@ -90,10 +137,13 @@ class Rockets extends Component {
               </span>
               <span className="info-container__items">
                 <h3>Cost per Launch</h3>$
-                {this.state.rockets.cost_per_launch / 1000000} millions
+                {this.state.rockets[this.state.index].cost_per_launch / 1000000}{" "}
+                millions
               </span>
             </div>
-            <p className="modal__paragraph">{this.state.rockets.description}</p>
+            <p className="modal__paragraph">
+              {this.state.rockets[this.state.index].description}
+            </p>
             <button className="modal__link-button">
               Learn More on Wikipedia
             </button>
