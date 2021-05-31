@@ -12,7 +12,7 @@ import "../assets/styles/index.scss";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/spacex-api">
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
