@@ -12,7 +12,7 @@ import "../assets/styles/index.scss";
 
 const App = () => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={window.location.pathname || ""}>
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
