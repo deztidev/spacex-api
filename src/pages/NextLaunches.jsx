@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import Loader from "../components/Loader.jsx";
 import Card from "../components/Card.jsx";
 
 import logo from "../assets/images/SpaceX-Logo.png";
@@ -16,14 +18,23 @@ class NextLaunches extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch(
-      "https://api.spacexdata.com/v4/launches/upcoming"
-    );
-    const upcoming = await response.json();
-    this.setState({ upcoming: upcoming });
+    this.setState({ loading: true, error: null });
+
+    try {
+      const response = await fetch(
+        "https://api.spacexdata.com/v4/launches/upcoming"
+      );
+      const upcoming = await response.json();
+      this.setState({ loading: false, upcoming: upcoming });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
+    }
   }
 
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
     return (
       <div className="cards-container">
         {this.state.upcoming.map((upcoming, i) => (
@@ -58,7 +69,7 @@ class NextLaunches extends Component {
                 {upcoming.links.wikipedia && (
                   <>
                     Wikipedia:{" "}
-                    <a href={upcoming.links.wikipedia}>
+                    <a href={upcoming.links.wikipedia} target="_blank">
                       {upcoming.links.wikipedia}
                     </a>
                   </>

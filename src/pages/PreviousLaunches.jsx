@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-import Card from "../components/Card";
-import Modal from "../components/Modal";
+import Loader from "../components/Loader.jsx";
+import Card from "../components/Card.jsx";
+import Modal from "../components/Modal.jsx";
 
 class PreviousLaunches extends Component {
   state = {
@@ -19,15 +20,22 @@ class PreviousLaunches extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch("https://api.spacexdata.com/v4/launches/past");
-    const previous = await response.json();
-    this.setState({ previous: previous.reverse() });
+    this.setState({ loading: true, error: null });
+    try {
+      const response = await fetch(
+        "https://api.spacexdata.com/v4/launches/past"
+      );
+      const previous = await response.json();
+      this.setState({ previous: previous.reverse() });
 
-    const rocketsResponse = await fetch(
-      "https://api.spacexdata.com/v4/rockets"
-    );
-    const rockets = await rocketsResponse.json();
-    this.setState({ rockets: rockets });
+      const rocketsResponse = await fetch(
+        "https://api.spacexdata.com/v4/rockets"
+      );
+      const rockets = await rocketsResponse.json();
+      this.setState({ loading: false, rockets: rockets });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
+    }
   }
 
   handlePreviousLaunch = i => {
@@ -38,6 +46,9 @@ class PreviousLaunches extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
     return (
       <>
         <div className="cards-container">

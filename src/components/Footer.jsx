@@ -6,7 +6,7 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p className="footer__main">Made with ♥️ by Martiniano Sanchi</p>
+      <p className="footer__main">Made with &#9829; by Martiniano Sanchi</p>
       <div>
         <a className="footer__icons" href="https://deztidev.github.io/SpaceX/">
           <FontAwesomeIcon icon={faGithub} />

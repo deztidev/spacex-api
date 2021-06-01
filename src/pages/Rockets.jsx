@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-import Card from "../components/Card";
-import Modal from "../components/Modal";
+import Loader from "../components/Loader.jsx";
+import Card from "../components/Card.jsx";
+import Modal from "../components/Modal.jsx";
 
 class Rockets extends Component {
   state = {
@@ -12,9 +13,15 @@ class Rockets extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch("https://api.spacexdata.com/v4/rockets");
-    const rockets = await response.json();
-    this.setState({ rockets: rockets });
+    this.setState({ loading: true, error: null });
+
+    try {
+      const response = await fetch("https://api.spacexdata.com/v4/rockets");
+      const rockets = await response.json();
+      this.setState({ loading: false, rockets: rockets });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
+    }
   }
 
   handleRocket = i => {
@@ -49,6 +56,9 @@ class Rockets extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
     return (
       <>
         <div className="cards-container">
@@ -144,9 +154,14 @@ class Rockets extends Component {
             <p className="modal__paragraph">
               {this.state.rockets[this.state.index].description}
             </p>
-            <button className="modal__link-button">
-              Learn More on Wikipedia
-            </button>
+            <a
+              href={this.state.rockets[this.state.index].wikipedia}
+              target="_blank"
+            >
+              <button className="modal__link-button">
+                Learn More on Wikipedia
+              </button>
+            </a>
           </Modal>
         ) : null}
       </>

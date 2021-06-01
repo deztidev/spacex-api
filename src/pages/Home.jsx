@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import Loader from "../components/Loader.jsx";
 import Card from "../components/Card.jsx";
 import Modal from "../components/Modal.jsx";
 
@@ -26,33 +27,39 @@ class Home extends Component {
   };
 
   async componentDidMount() {
-    const latestResponse = await fetch(
-      "https://api.spacexdata.com/v4/launches/latest"
-    );
-    const latest = await latestResponse.json();
-    this.setState({ latest: latest });
+    this.setState({ loading: true, error: null });
 
-    const nextResponse = await fetch(
-      "https://api.spacexdata.com/v4/launches/next"
-    );
-    const next = await nextResponse.json();
-    this.setState({ next: next });
+    try {
+      const latestResponse = await fetch(
+        "https://api.spacexdata.com/v4/launches/latest"
+      );
+      const latest = await latestResponse.json();
+      this.setState({ latest: latest });
 
-    const rocketsResponse = await fetch(
-      "https://api.spacexdata.com/v4/rockets"
-    );
-    const rockets = await rocketsResponse.json();
-    this.setState({ rockets: rockets });
+      const nextResponse = await fetch(
+        "https://api.spacexdata.com/v4/launches/next"
+      );
+      const next = await nextResponse.json();
+      this.setState({ next: next });
 
-    const latestRocket = this.state.rockets.find(
-      rocket => rocket.id == this.state.latest.rocket
-    );
-    this.setState({ latestRocket: latestRocket });
+      const rocketsResponse = await fetch(
+        "https://api.spacexdata.com/v4/rockets"
+      );
+      const rockets = await rocketsResponse.json();
+      this.setState({ rockets: rockets });
 
-    const nextRocket = this.state.rockets.find(
-      rocket => rocket.id == this.state.next.rocket
-    );
-    this.setState({ nextRocket: nextRocket });
+      const latestRocket = this.state.rockets.find(
+        rocket => rocket.id == this.state.latest.rocket
+      );
+      this.setState({ latestRocket: latestRocket });
+
+      const nextRocket = this.state.rockets.find(
+        rocket => rocket.id == this.state.next.rocket
+      );
+      this.setState({ loading: false, nextRocket: nextRocket });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
+    }
   }
 
   handleLatestLaunch = () => {
@@ -74,6 +81,9 @@ class Home extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
     return (
       <div className="cards-container">
         <h1 className="cards-container__titles cards-container__titles--titles1">
@@ -176,7 +186,7 @@ class Home extends Component {
               {this.state.next.links.wikipedia && (
                 <>
                   Wikipedia:{" "}
-                  <a href={this.state.next.links.wikipedia}>
+                  <a href={this.state.next.links.wikipedia} target="_blank">
                     {this.state.next.links.wikipedia}
                   </a>
                 </>

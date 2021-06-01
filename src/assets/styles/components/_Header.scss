@@ -2,6 +2,7 @@
   font-weight: bold;
   text-align: center;
   background-color: none;
+  padding-top: 12px;
   &__navbar {
     max-width: 1400px;
     margin: 0 auto;
@@ -52,6 +53,7 @@
   .header {
     font-family: $expanded-font;
     text-align: unset;
+    padding: 0;
     &__link-logo {
       display: inline-block;
       position: relative;
