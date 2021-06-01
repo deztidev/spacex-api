@@ -8,10 +8,10 @@ html {
 }
 #app {
   font-family: $regular-font;
-  min-height: 100vh;
+  // min-height: 100vh;
   background-image: url("../images/background-big.png");
   background-size: cover;
-  background-repeat: no-repeat;
+  // background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
 }
