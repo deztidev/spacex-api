@@ -7,7 +7,6 @@ html {
   font-size: 62.5%;
 }
 body:before {
-  font-family: $regular-font;
   content: "";
   display: block;
   position: fixed;
@@ -18,4 +17,7 @@ body:before {
   z-index: -10;
   background: url("../images/background-big.png") no-repeat center center;
   background-size: cover;
+}
+#app {
+  font-family: $regular-font;
 }
