@@ -61,7 +61,7 @@ class Rockets extends Component {
     }
     return (
       <>
-        <div className="cards-container">
+        <div className="cards-container less-margin">
           {this.state.rockets.map((rocket, i) => (
             <Card key={i}>
               <img

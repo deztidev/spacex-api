@@ -16,7 +16,6 @@
   }
   &__logo {
     position: relative;
-    bottom: 30px;
     width: 150px;
   }
   &__ul {
@@ -60,17 +59,17 @@
       top: 50px;
       left: 50px;
       width: 200px;
-      height: 35px;
+      height: 20px;
     }
     &__logo {
-      bottom: 50px;
+      bottom: 9px;
       width: 200px;
     }
     &__ul {
       position: absolute;
       width: auto;
       margin: 0 auto;
-      top: 51px;
+      top: 50px;
       left: 40%;
     }
     &__items {

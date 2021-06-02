@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Loader from "../components/Loader.jsx";
 import Card from "../components/Card.jsx";
 
-import logo from "../assets/images/SpaceX-Logo.png";
+import logo from "../assets/images/spacex-logo.png";
 
 class NextLaunches extends Component {
   state = {
@@ -36,7 +36,7 @@ class NextLaunches extends Component {
       return <Loader />;
     }
     return (
-      <div className="cards-container">
+      <div className="cards-container less-margin">
         {this.state.upcoming.map((upcoming, i) => (
           <Card key={i}>
             <img
@@ -45,6 +45,7 @@ class NextLaunches extends Component {
                 upcoming.links.patch.small
                   ? { objectFit: "contain" }
                   : {
+                      objectFit: "contain",
                       position: "relative",
                       left: "2%",
                       filter: "brightness(0)",

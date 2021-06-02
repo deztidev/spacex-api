@@ -8,7 +8,10 @@ const Footer = () => {
     <footer className="footer">
       <p className="footer__main">Made with &#9829; by Martiniano Sanchi</p>
       <div>
-        <a className="footer__icons" href="https://deztidev.github.io/SpaceX/">
+        <a
+          className="footer__icons"
+          href="https://github.com/deztidev/spacex-api"
+        >
           <FontAwesomeIcon icon={faGithub} />
         </a>
         <a

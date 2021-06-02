@@ -17,7 +17,7 @@
   .cards-container {
     flex-direction: unset;
     width: 76%;
-    margin: 0 auto;
+    margin: 80px auto 0 auto;
     flex-wrap: wrap;
     justify-content: center;
     &__titles {
@@ -44,6 +44,9 @@
       }
     }
   }
+  .less-margin {
+    margin-top: 50px;
+  }
   .container {
     margin: 30px 10px;
   }
@@ -51,7 +54,7 @@
 
 @media only screen and (min-width: 920px) {
   .cards-container {
-    margin-top: 30px;
+    margin-top: 110px;
     &__titles {
       font-size: 1.8rem;
       width: calc(100% - 300px);
@@ -63,6 +66,9 @@
         top: calc(10vh + 10px);
       }
     }
+  }
+  .less-margin {
+    margin-top: 60px;
   }
   .container {
     margin: 50px 10px;

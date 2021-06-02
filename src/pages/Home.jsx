@@ -4,7 +4,7 @@ import Loader from "../components/Loader.jsx";
 import Card from "../components/Card.jsx";
 import Modal from "../components/Modal.jsx";
 
-import logo from "../assets/images/SpaceX-Logo.png";
+import logo from "../assets/images/spacex-logo.png";
 
 class Home extends Component {
   state = {
@@ -160,6 +160,7 @@ class Home extends Component {
               this.state.next.links.patch.small
                 ? { objectFit: "contain" }
                 : {
+                    objectFit: "contain",
                     position: "relative",
                     left: "2%",
                     filter: "brightness(0)",

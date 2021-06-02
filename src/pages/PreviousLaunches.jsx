@@ -51,7 +51,7 @@ class PreviousLaunches extends Component {
     }
     return (
       <>
-        <div className="cards-container">
+        <div className="cards-container less-margin">
           {this.state.previous.map((previous, i) => (
             <Card key={i}>
               <img

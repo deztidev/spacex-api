@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../assets/images/SpaceX-Logo.png";
-import starlinkBg from "../assets/images/starlink-bg.png";
+import logo from "../assets/images/spacex-logo.png";
 
 class Header extends Component {
   render() {
