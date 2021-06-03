@@ -73,6 +73,15 @@ class NextLaunches extends Component {
                     <a href={upcoming.links.wikipedia} target="_blank">
                       {upcoming.links.wikipedia}
                     </a>
+                    <br />
+                  </>
+                )}
+                {upcoming.links.webcast && (
+                  <>
+                    Webcast:{" "}
+                    <a href={upcoming.links.webcast} target="_blank">
+                      {upcoming.links.webcast}
+                    </a>
                   </>
                 )}
               </p>

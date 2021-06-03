@@ -19,3 +19,19 @@ $tertiary-color: #016eff;
     background-color: #3c7ae4;
   }
 }
+
+@mixin container {
+  @media only screen and (min-width: 650px) {
+    .error-container,
+    .loader-container {
+      height: 88vh;
+    }
+  }
+
+  @media only screen and (min-width: 920px) {
+    .error-container,
+    .loader-container {
+      height: 91vh;
+    }
+  }
+}

@@ -17,6 +17,7 @@ class Home extends Component {
       links: {
         patch: {},
       },
+      date_utc: "",
     },
     rockets: [],
     latestRocket: [{ flickr_images: [] }],
@@ -60,6 +61,7 @@ class Home extends Component {
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
+    console.log(this.state.next);
   }
 
   handleLatestLaunch = () => {
@@ -181,7 +183,7 @@ class Home extends Component {
               {this.state.next.name}
             </h2>
             <p className="container__paragraph">
-              Date UTC: {this.state.next.date_utc} <br />
+              Date UTC: {this.state.next.date_utc.slice(0, 19)} <br />
               Date Precision: {this.state.next.date_precision} <br />
               Flight Number: {this.state.next.flight_number} <br />
               {this.state.next.links.wikipedia && (
@@ -189,6 +191,15 @@ class Home extends Component {
                   Wikipedia:{" "}
                   <a href={this.state.next.links.wikipedia} target="_blank">
                     {this.state.next.links.wikipedia}
+                  </a>{" "}
+                  <br />
+                </>
+              )}
+              {this.state.next.links.webcast && (
+                <>
+                  Webcast:{" "}
+                  <a href={this.state.next.links.webcast} target="_blank">
+                    {this.state.next.links.webcast}
                   </a>
                 </>
               )}
@@ -262,9 +273,11 @@ class Home extends Component {
             <p className="modal__paragraph">
               {this.state.latestRocket.description}
             </p>
-            <button className="modal__link-button">
-              Learn More on Wikipedia
-            </button>
+            <a href={this.state.latestRocket.wikipedia} target="_blank">
+              <button className="modal__link-button">
+                Learn More on Wikipedia
+              </button>
+            </a>
           </Modal>
         ) : null}
         <h1 className="cards-container__titles cards-container__titles--titles4">
@@ -334,9 +347,11 @@ class Home extends Component {
             <p className="modal__paragraph">
               {this.state.nextRocket.description}
             </p>
-            <button className="modal__link-button">
-              Learn More on Wikipedia
-            </button>
+            <a href={this.state.nextRocket.wikipedia} target="_blank">
+              <button className="modal__link-button">
+                Learn More on Wikipedia
+              </button>
+            </a>
           </Modal>
         ) : null}
       </div>

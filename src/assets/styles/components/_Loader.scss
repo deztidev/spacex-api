@@ -1,9 +1,12 @@
-.loader__container {
+.loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 79vh;
+  height: 77vh;
 }
+
+@include container;
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;
@@ -35,6 +38,7 @@
   left: 56px;
   animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
   0% {
     transform: scale(0);

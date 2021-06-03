@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 79vh;
+  height: 77vh;
   &__title {
     font-family: $expanded-font;
     font-size: 15rem;
@@ -18,6 +18,8 @@
     line-height: 2.8rem;
   }
 }
+
+@include container;
 
 @-moz-keyframes move-astronaut {
   100% {
@@ -63,10 +65,4 @@
   right: 20%;
   will-change: transform;
   animation: move-astronaut 50s infinite linear both alternate;
-}
-
-@media only screen and (min-width: 920px) {
-  .error-container {
-    height: 82vh;
-  }
 }
