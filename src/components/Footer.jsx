@@ -9,12 +9,16 @@ const Footer = () => {
       <p className="footer__main">Made with &#9829; by Martiniano Sanchi</p>
       <div>
         <a
+          aria-label="Github"
+          title="Github"
           className="footer__icons"
           href="https://github.com/deztidev/spacex-api"
         >
           <FontAwesomeIcon icon={faGithub} />
         </a>
         <a
+          aria-label="Linkedin"
+          title="Linkedin"
           className="footer__icons"
           href="https://www.linkedin.com/in/martiniano-sanchi/"
         >
