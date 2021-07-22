@@ -61,7 +61,6 @@ class Home extends Component {
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
-    console.log(this.state.next);
   }
 
   handleLatestLaunch = () => {
@@ -85,6 +84,8 @@ class Home extends Component {
   render() {
     if (this.state.loading) {
       return <Loader />;
+    } else if (this.state.error) {
+      return <h1>{this.state.error.message}</h1>;
     }
     return (
       <div className="cards-container">
