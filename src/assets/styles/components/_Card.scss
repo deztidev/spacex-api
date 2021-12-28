@@ -4,7 +4,8 @@
   margin-top: 20px;
   width: 226px;
   height: 294px;
-  overflow-y: scroll;
+  overflow: hidden auto;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
